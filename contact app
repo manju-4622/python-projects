@@ -1,0 +1,74 @@
+Creating a contact app using python this is a simple and user-friendly contact management application that allows users to add, update, view, and delete contacts. The app helps users organize and manage their contact information in one convenient place.
+code:
+contacts = [
+    {'name':'renuka','number':9879743210,'email':'renuka@gmail.com'},
+    {'name':'meghana','number':9452732564,'email':'meghana@gmail.com'},
+    {'name':'vyshnavi','number':9653741568,'email':'vyshnavi@gmail.com'}
+]
+
+def show_contacts(contacts):
+    for contact in contacts:
+        print('\n', contact)
+
+def add_contact(contacts):
+    name = input("Enter your name: ")
+    mobile = str(input("Enter your number: "))
+    email = input("Enter your Email: ")
+    contacts.append({'name': name, 'number': mobile, 'email': email})
+
+def open_contact(contacts):
+    name = input("Enter your name to open: ")
+    for contact in contacts:
+        if contact['name'] == name:
+            print(contact)
+            return
+    print("Contact not found.")
+
+def update_contact(contacts):
+    name = input("Enter your name to update: ")
+    for contact in contacts:
+        if contact['name'] == name:
+            new_name = input("Enter Your New Name: ")
+            new_mobile = str(input("Enter your New number: "))
+            new_email = input("Enter your New Email: ")
+            contact['name'] = new_name
+            contact['number'] = new_mobile
+            contact['email'] = new_email
+            print("Contact updated successfully.")
+            return
+    print("Contact not found.")
+
+def delete_contact(contacts):
+    name = input("Enter your name to delete: ")
+    for i, contact in enumerate(contacts):
+        if contact['name'] == name:
+            del contacts[i]
+            print("Contact deleted successfully.")
+            return
+    print("Contact not found.")
+
+while True:
+    action = input("Press 'a' - add contact, 'o' - open contact, 'u' - update contact, 'd' - delete contact, 'q' - quit: ")
+    
+    if action == 'a':
+        add_contact(contacts)
+        show_contacts(contacts)
+        
+    elif action == 'o':
+        open_contact(contacts)
+        
+    elif action == 'u':
+        update_contact(contacts)
+        show_contacts(contacts)
+        
+    elif action == 'd':
+        delete_contact(contacts)
+        show_contacts(contacts)
+        
+    elif action == 'q':
+        print("Exiting the program.")
+        break
+    
+    else:
+        print('Incorrect choice, please try again.')
+
